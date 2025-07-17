@@ -219,11 +219,12 @@ class TencentSheetParser:
 if __name__ == "__main__":
     stime = time.time()
 
-    target_url = "https://docs.qq.com/sheet/xxxxxxxxxxxxxxxxxxxxx"
+    target_url = "https://docs.qq.com/sheet/DTXNYcE9QendTYkFw"
 
     parser = TencentSheetParser(url=target_url)
 
     my_dataframe = parser.get_dataframe()
     parser.output_to("output.csv", "csv")
+    parser.output_to("output.xlsx", "excel")
 
     print(f"\n脚本总运行时间：{time.time() - stime:.2f}秒")
