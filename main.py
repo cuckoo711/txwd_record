@@ -26,13 +26,14 @@ class TencentSheetParser:
     _RECORD_REGEX = re.compile(r'const record=(.*?),replayRecord', re.S)
     _Q_COMMAND_PATTERN = re.compile(r'q\[(\d+),([\d.]+),([\d.]+)]')
 
-    def __init__(self, url: str, y_tolerance: int = 5):
+    def __init__(self, url: str, y_tolerance: int = 5, cookie: Optional[str] = None):
         """
         初始化解析器。
 
         Args:
             url (str): 目标腾讯文档表格的URL。
             y_tolerance (int, optional): 用于判断文本是否在同一行的Y轴容差值。默认为 5。
+            cookie (str, optional): 可选，传入用于访问文档的cookie字符串。
         """
         if not url.startswith("https://docs.qq.com/sheet/"):
             raise ValueError("提供的URL似乎不是一个有效的腾讯在线表格地址。")
@@ -44,6 +45,8 @@ class TencentSheetParser:
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         })
+        if cookie:
+            self.session.headers.update({"Cookie": cookie})
 
     def _fetch_page_content(self) -> Optional[str]:
         """从URL获取页面HTML内容"""
