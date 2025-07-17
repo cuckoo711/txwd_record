@@ -3,7 +3,7 @@ Creation date: 2025/7/17
 Creation Time: 14:03
 DIR PATH: 
 Project Name: txwd_record
-FILE NAME: refactored_parser.py
+FILE NAME: main.py
 Editor: cuckoo
 """
 
@@ -219,7 +219,7 @@ class TencentSheetParser:
 if __name__ == "__main__":
     stime = time.time()
 
-    target_url = "https://docs.qq.com/sheet/DTXNYcE9QendTYkFw"
+    target_url = "https://docs.qq.com/sheet/XXXXXXXXXXXXXXXXXXXXXXX"
 
     parser = TencentSheetParser(url=target_url)
 
